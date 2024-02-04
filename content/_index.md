@@ -3,39 +3,10 @@ title: Introduction
 type: docs
 ---
 
-# Acerbo datus maxime
+# Dev book 생성 이유
 
-{{< columns >}}
-## Astris ipse furtiva
+**희미해지는 기억**  
+업무를 하다가 습득한 지식, 궁금한 사항이 있을 때 확인했던 정보들이 시간이 지날수록 기억이 희미해진다. 그리고 다시 해당 정보의 기억을 끄집어내려고 할 때, 정확하지 않아 다시 한 번 확인해 보는 과정이 발생한다.
 
-Est in vagis et Pittheus tu arge accipiter regia iram vocatur nurus. Omnes ut
-olivae sensit **arma sorori** deducit, inesset **crudus**, ego vetuere aliis,
-modo arsit? Utinam rapta fiducia valuere litora _adicit cursu_, ad facies
-
-<--->
-
-## Suis quot vota
-
-Ea _furtique_ risere fratres edidit terrae magis. Colla tam mihi tenebat:
-miseram excita suadent es pecudes iam. Concilio _quam_ velatus posset ait quod
-nunc! Fragosis suae dextra geruntur functus vulgata.
-{{< /columns >}}
-
-
-## Tempora nisi nunc
-
-Lorem **markdownum** emicat gestu. Cannis sol pressit ducta. **Est** Idaei,
-tremens ausim se tutaeque, illi ulnis hausit, sed, lumina cutem. Quae avis
-sequens!
-
-    var panel = ram_design;
-    if (backup + system) {
-        file.readPoint = network_native;
-        sidebar_engine_device(cell_tftp_raster,
-                dual_login_paper.adf_vci.application_reader_design(
-                graphicsNvramCdma, lpi_footer_snmp, integer_model));
-    }
-
-## Locis suis novi cum suoque decidit eadem
-
-Idmoniae ripis, at aves, ali missa adest, ut _et autem_, et ab?
+**지식의 구조화**  
+단순히 기록을 하는 것을 넘어서, 기록된 내용들간 구조화를 통해 탐색도 쉽고, 해당 지식이 어느 범주에 속하는지도 정리하여 견고하게 기억할 목적으로 dev book을 생성하였다.
