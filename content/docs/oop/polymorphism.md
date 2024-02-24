@@ -170,7 +170,7 @@ OOP 언어에서는 subclassing(*inheritance*(상속)이라고도 함)을 사용
 
 C++에서는 부모 클래스를 상속받은 자식 클래스들의 인스턴스를, 부모 클래스의 포인터나 레퍼런스를 통해 사용하는 것이 대표적이다.
 
-![example of subtyping](/subtyping.png)  
+![example of subtyping](/dev_book/subtyping.png)  
 
 
 {{< tabs "Subtyping" >}}
