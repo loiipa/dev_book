@@ -31,7 +31,7 @@ type: docs
 - 신청 프로세스를 제출하는 데 걸리는 시간 측정하는 것 → 응답시간
 
 ### CPU Scheduling Algorithm Type
-![선점형 / 비선점형으로 나누어져 있는 CPU Scheduling](/cpu_scheduling.png) 
+![선점형 / 비선점형으로 나누어져 있는 CPU Scheduling](/dev_book/cpu_scheduling.png) 
 
 ---
 
@@ -80,7 +80,7 @@ type: docs
 ### HRRN (Highest Response Ration Next)
 - 프로세스 처리의 우선 순위를 CPU 처리 기간과 해당 프로세스의 대기 시간을 동시에 고려해 선정
 - SJF 스케줄링의 문제점 보완
-![Alt text](/response_ratio.png)
+![Alt text](/dev_book/response_ratio.png)
 - 즉, 대기 시간이 분자에 있기 때문에, 대기시간이 긴 프로세스가 추후에 우선순위를 가질 수 있음.
 
 ---
