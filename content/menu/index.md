@@ -2,6 +2,12 @@
 headless: true
 ---
 
+- **OOP**
+<br />
+
+- **Computer Science**
+<br />
+
 - [**Example Site**]({{< relref "/docs/example" >}})
 - [Table of Contents]({{< relref "/docs/example/table-of-contents" >}})
   - [With ToC]({{< relref "/docs/example/table-of-contents/with-toc" >}})
@@ -11,8 +17,6 @@ headless: true
     - [4th]({{< relref "/docs/example/collapsed/3rd-level/4th-level" >}})
 <br />
 
-- **OOP**
-<br />
 
 - **Shortcodes**
 - [Buttons]({{< relref "/docs/shortcodes/buttons" >}})
