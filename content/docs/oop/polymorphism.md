@@ -29,8 +29,8 @@ subtyping은 base class를 기준으로 여러 child class로 인해 의미가 �
 ## 형태
 
 ### Ad hoc polymorphism
-ad hoc polymorphism(임시 다형성)은 쉽게 표현하면,   
-다형성 함수(polymorphic function)가 인자를 받는 부분을 다르게 하여 차별을 두는 다형성의 일종이다. 
+ad hoc polymorphism(임시 다형성)은 쉽게 표현하면,  
+다형성 함수(polymorphic function)가 인자를 받는 부분을 다르게 하여 차별을 두는 다형성의 일종이다.  
 
 객체지향 개념에서는  **function overloading**(함수 오버로딩), **operator overloading**(연산자 오버로딩) 이 있다.  
 

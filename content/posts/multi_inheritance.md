@@ -136,15 +136,19 @@ class ChartCtrlA : public ChartCtrlBase, public ChartLibraryA
 std::unique_ptr<ChartCtrlBase> chart = std::make_unique<ChartCtrlA>();
 
 // 2. view에 chart 등록
-// 이때, 실제 Create가 불리는 class는 ChartCtrlA이다.
+// 이때, 실제 Create가 불리는 class는 ChartLibrary에서 상속된 CWnd 이다.
+// create시점에서 [00] +8 -> [08]주소에서 Create가 수행된다.
 chart->Create( ..., this );
 
 // 3. event handler
-// ChartLibraryA 에서 event가 발생할 때, ChartCtrlA class에서 이를 처리.
+// ChartLibraryA 에서 event가 발생할 때, ChartCtrlA class에서 이를 처리한다.
+// 이때, this(ChartLibraryA)의 주소는 [08]이고, 타입을 명시하지 않으면 [08] +8 -> [16]으로 주소가 이동된다.
+this->GetParent();
 ```
 
 ### 문제 해결 방안
 해결방안은 쉽다. 상속순서를 바꾸면 된다.  
+
 ```c++
 class ChartCtrlA : public ChartLibraryA, public ChartCtrlBase
 ```

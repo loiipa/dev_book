@@ -2,15 +2,18 @@
 
 <br/>
 
-# Hugo with github 세팅
+# Hugo with github 설치 및 세팅
+
 ## Window powershell 기준
 
 ### 1. install go (programming language)
+
 > https://go.dev/doc/install
 
 </br>
 
 ### 2. Hugo Clone
+
 > https://github.com/gohugoio/hugo
 
 주의 - Theme에 따라 Extension clone을 해야할 수 있어서 적용하고 싶은 theme에서 extension 사용 유무를 먼저 확인
@@ -27,6 +30,7 @@ go install -tags extended github.com/gohugoio/hugo@latest
 </br>
 
 ### 3. Theme Clone
+
 > https://themes.gohugo.io/
 
 여기서 원하는 테마를 선택 후 아래의 절차 수행
@@ -34,7 +38,9 @@ go install -tags extended github.com/gohugoio/hugo@latest
 </br>
 
 #### * Hugo Book 기준
+
 Hugo book은 submodule을 이용하라는 가이드를 제시해준다.
+
 ```bash
 hugo new site mydocs; cd mydocs
 git init
@@ -48,9 +54,11 @@ hugo server --minify --theme hugo-book
 </br>
 
 ### 4. GitHub Host
+
 > https://gohugo.io/hosting-and-deployment/hosting-on-github/
 
 Hugo Book을 기준으로는 hugo.yaml에서 theme option을 추가해주면 된다.
+
 ```bash
 run: |
           hugo \
@@ -59,4 +67,29 @@ run: |
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+```
+
+# git clone 이후 세팅
+
+## mac 기준
+
+### 1. install go
+
+> https://go.dev/doc/install
+
+</br>
+
+### 2. Hugo install
+
+terminal에서 명령어 입력
+
+```bash
+brew install hugo
+```
+
+### 3. set git submodule
+
+```bash
+git submodule init
+git sumbodule clone
 ```
