@@ -17,50 +17,116 @@ type: docs
 ![공유 메모리 시스템 그림](/dev_book/shared_memory.png)  
 
 {{< tabs "shared memory" >}}
-{{< tab "shared memory" >}}
+{{< tab "shared memory - process 1" >}}
 
 ```c++
 #include <windows.h>
+#include <conio.h>
+#include <iostream>
 
-int main() {
+int main()
+{
+    std::wstring memoryName = L"MySharedMemory";
+    std::wstring message = L"Hello ipc!";
+
     // 공유 메모리 크기 정의
     const int sharedMemorySize = 1024; // 예: 1KB
 
     // 파일 매핑 객체 생성
-    HANDLE hMapFile = CreateFileMapping(
-        INVALID_HANDLE_VALUE,    // 파일 핸들 (INVALID_HANDLE_VALUE: 파일 없음)
-        NULL,                    // 보안 속성 (기본값: NULL)
-        PAGE_READWRITE,          // 메모리 보호 모드 (읽기/쓰기 가능)
-        0,                       // 공유 메모리 크기 (상위 32비트)
-        sharedMemorySize,        // 공유 메모리 크기 (하위 32비트)
-        L"MySharedMemory");      // 공유 메모리 이름 (문자열, NULL 또는 고유한 이름)
+    HANDLE hMapFile = CreateFileMapping
+    (
+        INVALID_HANDLE_VALUE,   // 파일 핸들 (INVALID_HANDLE_VALUE: 파일 없음)
+        NULL,                   // 보안 속성 (기본값: NULL)
+        PAGE_READWRITE,         // 메모리 보호 모드 (읽기/쓰기 가능)
+        0,                      // 공유 메모리 크기 (상위 32비트) (하위 32비트(2^32)를 넘을 경우,해당 비트를 지정)
+        sharedMemorySize,       // 공유 메모리 크기 (하위 32비트)
+        memoryName.data()       // 공유 메모리 이름 (문자열, NULL 또는 고유한 이름)
+    );      
 
-    if (hMapFile == NULL) {
-        // 오류 처리
+    if (hMapFile == nullptr)
+    {
+        std::cout << "error num : " << GetLastError() << std::endl;
         return 1;
     }
 
     // 공유 메모리에 연결
-    LPVOID pSharedMemory = MapViewOfFile(
-        hMapFile,             // 파일 매핑 객체 핸들
-        FILE_MAP_ALL_ACCESS,  // 메모리 접근 권한
-        0,                    // 파일 오프셋의 상위 32비트
-        0,                    // 파일 오프셋의 하위 32비트
-        sharedMemorySize);    // 매핑할 메모리 크기
+    LPVOID pSharedMemory = MapViewOfFile
+    (
+        hMapFile,               // 파일 매핑 객체 핸들
+        FILE_MAP_ALL_ACCESS,    // 메모리 접근 권한
+        0,                      // 파일 오프셋의 상위 32비트
+        0,                      // 파일 오프셋의 하위 32비트
+        sharedMemorySize        // 매핑할 메모리 크기
+    );
 
-    if (pSharedMemory == NULL) {
+    if (pSharedMemory == nullptr)
+    {
         // 오류 처리
+        std::cout << "error num : " << GetLastError() << std::endl;
         CloseHandle(hMapFile);
         return 1;
     }
 
-    // 공유 메모리 사용 (예: 데이터 읽기/쓰기)
+    // 공유 메모리 사용
+    wcscpy(static_cast<wchar_t*>(pSharedMemory), message.data());
+    std::wcout << static_cast<wchar_t*>(pSharedMemory) << std::endl;
+
+    //// 키보드 입력값을 하나를 받음.
+    _getch();
 
     // 공유 메모리 해제
     UnmapViewOfFile(pSharedMemory);
     CloseHandle(hMapFile);
+}
+```
 
-    return 0;
+{{< /tab >}}
+
+{{< tab "shared memory - process 2" >}}
+
+```c++
+#include <windows.h>
+#include <iostream>
+
+int main()
+{
+    std::wstring memoryName = L"MySharedMemory";
+    
+    // 공유 메모리 크기 정의
+    const int sharedMemorySize = 1024;
+    
+    HANDLE hMapFile = OpenFileMapping
+    (
+        FILE_MAP_ALL_ACCESS,        // 메모리 매핑 객체에 대한 엑세스 권한
+        FALSE,                      // 핸들 상속 유무
+        memoryName.data()           // 메모리 매핑 객체의 이름 지정
+    );
+
+    if (hMapFile == nullptr)
+    {
+        std::cout << "error num : " << GetLastError() << std::endl;
+        return 1;
+    }
+
+    LPVOID pSharedMemory = MapViewOfFile
+    (
+        hMapFile,
+        FILE_MAP_ALL_ACCESS,
+        0,
+        0,
+        sharedMemorySize
+    );
+
+    if (pSharedMemory == nullptr)
+    {
+        std::cout << "error num : " << GetLastError() << std::endl;
+        CloseHandle(hMapFile);
+        return 1;
+    }
+
+    MessageBox(NULL, static_cast<wchar_t*>(pSharedMemory), TEXT("Process2"), MB_OK);
+    UnmapViewOfFile(pSharedMemory);
+    CloseHandle(hMapFile);
 }
 ```
 
